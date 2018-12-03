@@ -1,4 +1,4 @@
-<app-admin-toolbar (logout)="logout()"></app-admin-toolbar>
+<app-admin-toolbar [(selectedProfile)]="selectedProfile" (logout)="logout()"></app-admin-toolbar>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="editProfileService.group">

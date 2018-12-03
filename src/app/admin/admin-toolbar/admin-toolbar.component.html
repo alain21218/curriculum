@@ -4,7 +4,7 @@
     <span class="spacer"></span>
 
     <!-- Dropdown that swap forms to another profile -->
-    <mat-select class="profiles">
+    <mat-select class="profiles" [(ngModel)]="selectedProfile" [compareWith]="compareWith">
       <mat-option *ngFor="let profile of profiles | async" [value]="profile">
         {{ profile.title }}
       </mat-option>

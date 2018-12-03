@@ -12,16 +12,18 @@ import { EditExperienceComponent } from './edit-experience/edit-experience.compo
 import { EditProjectsComponent } from './edit-projects/edit-projects.component';
 import { EditHobbiesComponent } from './edit-hobbies/edit-hobbies.component';
 import { EditProfileService } from './edit-profile/edit-profile.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AdminToolbarComponent } from './admin-toolbar/admin-toolbar.component';
 
 @NgModule({
-  declarations: [AdminComponent, EditProfileComponent, EditSkillsComponent, EditEducationComponent, EditExperienceComponent, EditProjectsComponent, EditHobbiesComponent],
+  declarations: [AdminToolbarComponent, AdminComponent, EditProfileComponent, EditSkillsComponent, EditEducationComponent, EditExperienceComponent, EditProjectsComponent, EditHobbiesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     CoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [],
   providers: [EditProfileService]
