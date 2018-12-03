@@ -9,10 +9,10 @@ export class UserService {
   constructor(private api: ApiService) { }
 
   getUsers() {
-    return this.api.get('/user')
+    return this.api.get('/users')
   }
 
   createUser(email: string, password: string) {
-    return this.api.post('/user', { email, password })
+    return this.api.post('/users', { email, password })
   }
 }

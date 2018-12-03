@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "init:windows": "copy template.json db.json",
+    "init:linux": "cp template.json db.json",
     "start": "concurrently \"npm run start:api\" \"npm run start:front\"",
     "start:front": "ng serve",
     "start:api": "json-server -w db.json",
