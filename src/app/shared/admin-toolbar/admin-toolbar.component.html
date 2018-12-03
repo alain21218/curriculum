@@ -8,7 +8,7 @@
       <mat-option>Aucun profil</mat-option>
     </mat-select>
 
-    <button mat-raised-button color="accent" (click)="logout()">
+    <button mat-raised-button color="accent" (click)="logout.emit()">
       <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
     </button>
   </mat-toolbar-row>

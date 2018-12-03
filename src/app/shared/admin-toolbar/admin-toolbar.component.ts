@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-admin-toolbar',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-toolbar.component.scss']
 })
 export class AdminToolbarComponent implements OnInit {
+  @Output() logout = new EventEmitter();
 
   constructor() { }
 
