@@ -1,3 +1,40 @@
-<p>
-  edit-profile works!
-</p>
+<form [formGroup]="editProfileService.group">
+  <mat-form-field>
+    <input type="text" matInput placeholder="Titre du profil" formControlName="title">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Intitulé de l'emploi" formControlName="jobTitle">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Prénom" formControlName="firstname">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Nom" formControlName="lastname">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de naissance" formControlName="birthday">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Adresse" formControlName="address">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Disponibilité" formControlName="availability">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Mobilité" formControlName="scope">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Permis" formControlName="license">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="email" matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="url" matInput placeholder="Facebook" formControlName="facebook">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="url" matInput placeholder="LinkedIn" formControlName="linkedin">
+  </mat-form-field>
+</form>

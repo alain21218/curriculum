@@ -5,7 +5,9 @@
 
     <!-- Dropdown that swap forms to another profile -->
     <mat-select class="profiles">
-      <mat-option>Aucun profil</mat-option>
+      <mat-option *ngFor="let profile of profiles | async" [value]="profile">
+        {{ profile.title }}
+      </mat-option>
     </mat-select>
 
     <button mat-raised-button color="accent" (click)="logout.emit()">

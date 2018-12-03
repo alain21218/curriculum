@@ -1,4 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ProfileService } from 'src/app/core/services/profile.service';
+import { Observable } from 'rxjs';
+import { Profile } from 'src/app/core/models/profile';
 
 @Component({
   selector: 'app-admin-toolbar',
@@ -7,10 +10,11 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class AdminToolbarComponent implements OnInit {
   @Output() logout = new EventEmitter();
+  profiles: Observable<Profile>
 
-  constructor() { }
+  constructor(public profileService: ProfileService) { }
 
   ngOnInit() {
+    this.profiles = this.profileService.getAllProfiles();
   }
-
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Profile } from '../models/profile';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,11 @@ export class ProfileService {
     return this.api.get(`/profiles?active=true`);
   }
   
-  getAllProfiles() {
+  getAllProfiles(): Observable<any> {
     return this.api.get(`/profiles`);
+  }
+
+  updateProfile(profile: Profile) {
+    return this.api.post('/profiles', profile);
   }
 }

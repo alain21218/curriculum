@@ -11,6 +11,8 @@ import { EditEducationComponent } from './edit-education/edit-education.componen
 import { EditExperienceComponent } from './edit-experience/edit-experience.component';
 import { EditProjectsComponent } from './edit-projects/edit-projects.component';
 import { EditHobbiesComponent } from './edit-hobbies/edit-hobbies.component';
+import { EditProfileService } from './edit-profile/edit-profile.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AdminComponent, EditProfileComponent, EditSkillsComponent, EditEducationComponent, EditExperienceComponent, EditProjectsComponent, EditHobbiesComponent],
@@ -18,8 +20,10 @@ import { EditHobbiesComponent } from './edit-hobbies/edit-hobbies.component';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ],
-  exports: []
+  exports: [],
+  providers: [EditProfileService]
 })
 export class AdminModule { }
