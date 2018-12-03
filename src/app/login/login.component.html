@@ -1,0 +1,9 @@
+<fieldset>
+  <legend>Authentification</legend>
+  <form [formGroup]="group" (submit)="submit($event)">
+    <input type="email" placeholder="Email" formControlName="email">
+    <input type="password" placeholder="Mot de passe" formControlName="password">
+
+    <button type="submit">Connexion</button>
+  </form>
+</fieldset>
