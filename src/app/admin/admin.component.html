@@ -1,3 +1,43 @@
-<button (click)="logout()">Déconnexion</button>
+<app-admin-toolbar></app-admin-toolbar>
 
-<pre>{{ authService.currentUser | async | json }}</pre>
+<mat-horizontal-stepper #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Profil</ng-template>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Compétences</ng-template>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Formation</ng-template>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Expérience</ng-template>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Projets</ng-template>
+        <div>
+            <button mat-button matStepperNext>Next</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Loisirs</ng-template>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<pre appCollapse>{{ authService.currentUser | async | json }}</pre>

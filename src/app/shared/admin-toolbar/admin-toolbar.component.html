@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Administration</span>
+    <span class="spacer"></span>
+
+    <!-- Dropdown that swap forms to another profile -->
+    <mat-select class="profiles">
+      <mat-option>Aucun profil</mat-option>
+    </mat-select>
+
+    <button mat-raised-button color="accent" (click)="logout()">
+      <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

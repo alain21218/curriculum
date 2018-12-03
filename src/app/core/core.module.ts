@@ -8,9 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { ProfileService } from './services/profile.service';
 import { AuthService } from './services/auth.service';
+import { CollapseDirective } from './directives/collapse.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [CollapseDirective],
   imports: [
     CommonModule,
     SharedModule,
@@ -23,6 +24,8 @@ import { AuthService } from './services/auth.service';
     UserService,
     ProfileService,
     AuthService
+  ], exports: [
+    CollapseDirective
   ]
 })
 export class CoreModule { }

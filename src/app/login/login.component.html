@@ -1,9 +1,21 @@
-<fieldset>
-  <legend>Authentification</legend>
-  <form [formGroup]="group" (submit)="submit($event)">
-    <input type="email" placeholder="Email" formControlName="email">
-    <input type="password" placeholder="Mot de passe" formControlName="password">
+<form [formGroup]="group" (submit)="submit($event)">
+  <mat-card>
+    <mat-card-header>
+      <fa-icon [icon]="['fas', 'key']" mat-card-avatar></fa-icon>
+      <mat-card-title>Authentification</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Mot de passe" formControlName="password">
+      </mat-form-field>
 
-    <button type="submit">Connexion</button>
-  </form>
-</fieldset>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-button type="submit">Connexion</button>
+      <button mat-button>Retour</button>
+    </mat-card-footer>
+  </mat-card>
+</form>

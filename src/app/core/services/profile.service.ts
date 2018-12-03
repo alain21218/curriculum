@@ -15,4 +15,8 @@ export class ProfileService {
   getActiveProfile() {
     return this.api.get(`/profiles?active=true`);
   }
+  
+  getAllProfiles() {
+    return this.api.get(`/profiles`);
+  }
 }

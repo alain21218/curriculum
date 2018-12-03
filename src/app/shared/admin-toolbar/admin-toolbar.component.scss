@@ -1,0 +1,13 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+
+  .profiles {
+    width: 200px;
+    margin-right: 15px;
+
+    .mat-select-value, .mat-select-arrow {
+      color: white !important;
+    }
+  }
