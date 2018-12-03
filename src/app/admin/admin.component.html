@@ -1,1 +1,3 @@
 <button (click)="logout()">Déconnexion</button>
+
+<pre>{{ authService.currentUser | async | json }}</pre>

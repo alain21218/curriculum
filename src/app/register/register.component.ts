@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../core/services/user.service';
 import { ErrorService } from '../core/services/error.service';
 import { Router } from '@angular/router';
+import { AfError } from '../core/enums/af-error';
 
 @Component({
   selector: 'app-register',

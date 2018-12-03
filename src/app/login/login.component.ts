@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorService } from '../core/services/error.service';
+import { AfError } from '../core/enums/af-error';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private error: ErrorService
   ) { }
 
   ngOnInit() {
@@ -37,6 +40,6 @@ export class LoginComponent implements OnInit {
       } else {
         alert('email ou mdp faux');
       }
-    })
+    }, error => this.error.handle(error));
   }
 }

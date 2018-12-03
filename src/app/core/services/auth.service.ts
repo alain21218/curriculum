@@ -1,38 +1,47 @@
 import { Injectable } from '@angular/core';
-import { ApiService } from './api.service';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { User } from '../models/user';
+import { Observable, from } from 'rxjs';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userConnected: User;
+  authState: Observable<any> = null;
+  user: any = null;
 
   constructor(
-    private api: ApiService,
-    private router: Router
-  ) { }
-
-  connection(email: string, password: string): Observable<boolean> {
-    return this.api.get(`/user?email=${email}&password=${password}`)
-      .pipe(map((user: any) => {
-        if(!user || user.length <= 0) return false;
-
-        this.userConnected = user;
-        return true;
-      }))
+    private router: Router,
+    private authFire: AngularFireAuth
+  ) {
+    // track user state
+    this.authState = this.authFire.authState;
   }
 
-  get isConnected(): boolean {
-    return this.userConnected ? true : false;
+  connection(email: string, password: string): Observable<boolean> {
+    this.authState = from(this.authFire.auth.signInWithEmailAndPassword(email, password));
+
+    return this.authState
+      .pipe(map(user => {
+        this.user = user;
+        return user !== null;
+      }));
+  }
+
+  // Returns true if user is logged in
+  get authenticated(): Observable<boolean> {
+    return this.authState.pipe(map(user => user !== null))
+  }
+
+  // Returns current user data as observable
+  get currentUser(): Observable<any> {
+    return this.authenticated ? this.authState : null;
   }
 
   logout() {
-    this.userConnected = null;
+    this.authFire.auth.signOut();
     this.router.navigate(['/']);
   }
 }

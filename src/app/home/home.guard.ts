@@ -21,26 +21,14 @@ export class HomeGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      const usersObservable = this.userService.getUsers();
-      const profileObservable = this.profileService.getActiveProfile();
-
-      return forkJoin(usersObservable, profileObservable).pipe(map(
-        data => {
-          const users = data[0] as any;
-          const profiles = data[1] as any;
-
-          if(!users || users.length <= 0) {
-            this.router.navigate(['/register']);
-            return false;
-          }
-
+      return this.profileService.getActiveProfile()
+        .pipe(map((profiles: any) => {
           if(!profiles || profiles.length <= 0) {
             this.router.navigate(['/login']);
             return false;
           }
 
           return true;
-        }
-      ));
+        }));
   }
 }

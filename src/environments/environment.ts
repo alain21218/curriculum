@@ -5,7 +5,16 @@
 export const environment = {
   production: false,
 
-  api: 'http://localhost:3000'
+  api: 'http://localhost:3000',
+
+  firebase: {
+    apiKey: "AIzaSyBNM9QabpOnR-nQR5LnFGTocOiUsYDQ4RI",
+    authDomain: "curriculum-845b4.firebaseapp.com",
+    databaseURL: "https://curriculum-845b4.firebaseio.com",
+    projectId: "curriculum-845b4",
+    storageBucket: "curriculum-845b4.appspot.com",
+    messagingSenderId: "782236400870"
+  }
 };
 
 /*

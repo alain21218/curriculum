@@ -3,6 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { ApiService } from '../core/services/api.service';
 import { AuthService } from '../core/services/auth.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +18,13 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.isConnected) {
-      return true;
-    }
-
-    this.router.navigate(['/admin'])
-    return false;
+      return this.authService.authenticated.pipe(map(connected => {
+        if(!connected) {
+          return true;
+        }else {
+          this.router.navigate(['/admin'])
+          return false;
+        }
+      }));
   }
 }
