@@ -5,6 +5,8 @@ import { User } from '../core/models/user';
 import { EditProfileService } from './edit-profile/edit-profile.service';
 import { Profile } from '../core/models/profile';
 import { ProfileService } from '../core/services/profile.service';
+import { Observable } from 'rxjs';
+import { ErrorService } from '../core/services/error.service';
 
 @Component({
   selector: 'app-admin',
@@ -13,14 +15,17 @@ import { ProfileService } from '../core/services/profile.service';
 })
 export class AdminComponent implements OnInit {
   selectedProfile: Profile;
+  profiles: Observable<Profile>;
 
   constructor(
     private authService: AuthService,
     private profileService: ProfileService,
-    public editProfileService: EditProfileService
+    private editProfileService: EditProfileService,
+    private error: ErrorService
   ) { }
-
+  
   ngOnInit() {
+    this.profiles = this.profileService.getAllProfiles();
     this.profileService.getActiveProfile().subscribe(profile => {
       this.selectedProfile = profile[0];
     });
@@ -33,7 +38,8 @@ export class AdminComponent implements OnInit {
   apply() {
     this.editProfileService.save()
       .subscribe(done => {
-
-      }, error => alert('pas sauvegardé car erreur'));
+        this.profiles = this.profileService.getAllProfiles();
+        this.selectedProfile = done;
+      }, error => this.error.handle(error));
   }
 }

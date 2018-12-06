@@ -11,15 +11,9 @@ import { Profile } from 'src/app/core/models/profile';
 export class AdminToolbarComponent implements OnInit {
   @Output() logout = new EventEmitter();
   @Output() selectedProfileChange = new EventEmitter();
-  profiles: Observable<Profile>;
+  @Input() profiles: Observable<Profile>;
 
   _selectedProfile: Profile;
-
-  constructor(public profileService: ProfileService) { }
-
-  ngOnInit() {
-    this.profiles = this.profileService.getAllProfiles();
-  }
 
   @Input() get selectedProfile() {
     return this._selectedProfile;

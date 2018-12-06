@@ -1,4 +1,4 @@
-<app-admin-toolbar [(selectedProfile)]="selectedProfile" (logout)="logout()"></app-admin-toolbar>
+<app-admin-toolbar [profiles]="profiles" [(selectedProfile)]="selectedProfile" (logout)="logout()"></app-admin-toolbar>
 
 <mat-horizontal-stepper [linear]="true" #stepper>
     <mat-step [stepControl]="editProfileService.group">
@@ -29,9 +29,8 @@
     <mat-step>
         <ng-template matStepLabel>Loisirs</ng-template>
         <app-edit-hobbies></app-edit-hobbies>
-        <button mat-button matStepperPrevious>Précédent</button>
-        <button mat-button (click)="stepper.reset()">Réinitialiser</button>
         <button mat-button (click)="apply()">Appliquer</button>
+        <button mat-button (click)="stepper.reset()">Réinitialiser</button>
     </mat-step>
 </mat-horizontal-stepper>
 

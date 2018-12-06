@@ -9,6 +9,7 @@ import { UserService } from './services/user.service';
 import { ProfileService } from './services/profile.service';
 import { AuthService } from './services/auth.service';
 import { CollapseDirective } from './directives/collapse.directive';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [CollapseDirective],
@@ -16,7 +17,9 @@ import { CollapseDirective } from './directives/collapse.directive';
     CommonModule,
     SharedModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot()
+
   ],
   providers: [
     ApiService,
@@ -25,7 +28,8 @@ import { CollapseDirective } from './directives/collapse.directive';
     ProfileService,
     AuthService
   ], exports: [
-    CollapseDirective
+    CollapseDirective,
+    NgxMaskModule
   ]
 })
 export class CoreModule { }
