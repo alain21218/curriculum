@@ -10,6 +10,7 @@ import { ErrorService } from '../core/services/error.service';
 import { SkillsService } from '../core/services/skills.service';
 import { EditSkillsService } from './edit-skills/edit-skills.service';
 import { Skill } from '../core/models/skill';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -42,14 +43,14 @@ export class AdminComponent implements OnInit {
 
   saveProfile() {
     this.editProfileService.save()
-      .subscribe(done => {
+      .subscribe(profile => {
         const otherInfos = [];
 
         otherInfos.push(this.createSkills());
 
         forkJoin(otherInfos).subscribe(otherInfos => {
           this.profiles = this.profileService.getAllProfiles();
-          this.selectedProfile = done;
+          this.selectedProfile = profile;
         });
       }, error => this.error.handle(error));
   }
