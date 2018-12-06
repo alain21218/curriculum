@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatCardModule, MatStepperModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatStepperModule, MatToolbarModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -15,7 +15,8 @@ import { MatButtonModule, MatCardModule, MatStepperModule, MatToolbarModule, Mat
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
+    MatSlideToggleModule
   ], providers: [
     MatDatepickerModule
   ]

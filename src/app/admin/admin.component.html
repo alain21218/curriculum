@@ -1,6 +1,7 @@
 <app-admin-toolbar [profiles]="profiles" [(selectedProfile)]="selectedProfile" (logout)="logout()"></app-admin-toolbar>
 
-<mat-horizontal-stepper [linear]="true" #stepper>
+<!-- [linear]="true" -->
+<mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="editProfileService.group">
         <ng-template matStepLabel>Profil</ng-template>
         <app-edit-profile></app-edit-profile>
