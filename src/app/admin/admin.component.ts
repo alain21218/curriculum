@@ -5,8 +5,11 @@ import { User } from '../core/models/user';
 import { EditProfileService } from './edit-profile/edit-profile.service';
 import { Profile } from '../core/models/profile';
 import { ProfileService } from '../core/services/profile.service';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { ErrorService } from '../core/services/error.service';
+import { SkillsService } from '../core/services/skills.service';
+import { EditSkillsService } from './edit-skills/edit-skills.service';
+import { Skill } from '../core/models/skill';
 
 @Component({
   selector: 'app-admin',
@@ -21,6 +24,8 @@ export class AdminComponent implements OnInit {
     private authService: AuthService,
     private profileService: ProfileService,
     private editProfileService: EditProfileService,
+    private skillsService: SkillsService,
+    private editSkillsService: EditSkillsService,
     private error: ErrorService
   ) { }
   
@@ -38,8 +43,14 @@ export class AdminComponent implements OnInit {
   saveProfile() {
     this.editProfileService.save()
       .subscribe(done => {
-        this.profiles = this.profileService.getAllProfiles();
-        this.selectedProfile = done;
+        const otherInfos = [];
+
+        otherInfos.push(this.createSkills());
+
+        forkJoin(otherInfos).subscribe(otherInfos => {
+          this.profiles = this.profileService.getAllProfiles();
+          this.selectedProfile = done;
+        });
       }, error => this.error.handle(error));
   }
 
@@ -54,5 +65,9 @@ export class AdminComponent implements OnInit {
   newProfile() {
     this.selectedProfile = null;
     this.editProfileService.create();
+  }
+
+  createSkills(): Observable<Skill[]> {
+    return this.skillsService.createSkills(this.editSkillsService.makeSkills());
   }
 }

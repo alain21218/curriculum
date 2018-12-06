@@ -1,3 +1,22 @@
-<p>
-  edit-skills works!
-</p>
+<button mat-button (click)="addSkill()">Ajouter une compétence</button>
+
+<form [formGroup]="group">
+  <div formArrayName="skills">
+    <mat-card *ngFor="let skill of group.controls.skills.controls; let i = index">
+      <mat-card-content [formGroupName]="i">
+        <mat-form-field>
+          <input type="text" matInput formControlName="title" placeholder="Titre">
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput formControlName="subtitle" placeholder="Sous-titre">
+        </mat-form-field>
+        <mat-slider formControlName="score" [max]="0" [min]="100" [step]="1" [thumbLabel]="true"></mat-slider>
+      </mat-card-content>
+      <mat-card-footer>
+        <button mat-button color="accent">
+          <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</form>
