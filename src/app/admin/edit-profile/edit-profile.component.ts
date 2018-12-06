@@ -13,4 +13,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  get saved(): boolean {
+    return this.editProfileService.baseProfile != null;
+  }
 }

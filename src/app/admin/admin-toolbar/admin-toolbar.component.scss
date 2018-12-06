@@ -2,12 +2,20 @@
     flex: 1 1 auto;
   }
 
+  .actions {
+    $action-bar-width: 250px;
 
-  .profiles {
-      width: 150px;
-    margin-right: 15px;
+    position: relative;
+    width: $action-bar-width;
+    justify-content: center;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+    height: 40px;
 
-    .mat-select-value, .mat-select-arrow {
-      color: white !important;
+    .mat-form-field {
+        position: absolute;
+        top: -56px;
+        width: $action-bar-width;
+        text-align: center;
     }
-  } 
+}

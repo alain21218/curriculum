@@ -1,37 +1,31 @@
-<app-admin-toolbar [profiles]="profiles" [(selectedProfile)]="selectedProfile" (logout)="logout()"></app-admin-toolbar>
+<app-admin-toolbar [profiles]="profiles" [(selectedProfile)]="selectedProfile" 
+(logout)="logout()" (new)="newProfile()" (remove)="removeProfile()" (save)="saveProfile()"></app-admin-toolbar>
 
 <!-- [linear]="true" -->
 <mat-horizontal-stepper #stepper>
     <mat-step [stepControl]="editProfileService.group">
         <ng-template matStepLabel>Profil</ng-template>
         <app-edit-profile></app-edit-profile>
-        <button mat-button matStepperNext>Suivant</button>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Compétences</ng-template>
         <app-edit-skills></app-edit-skills>
-        <button mat-button matStepperNext>Suivant</button>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Formation</ng-template>
         <app-edit-education></app-edit-education>
-        <button mat-button matStepperNext>Suivant</button>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Expérience</ng-template>
         <app-edit-experience></app-edit-experience>
-        <button mat-button matStepperNext>Suivant</button>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Projets</ng-template>
         <app-edit-projects></app-edit-projects>
-        <button mat-button matStepperNext>Suivant</button>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Loisirs</ng-template>
         <app-edit-hobbies></app-edit-hobbies>
-        <button mat-button (click)="apply()">Appliquer</button>
-        <button mat-button (click)="stepper.reset()">Réinitialiser</button>
     </mat-step>
 </mat-horizontal-stepper>
 

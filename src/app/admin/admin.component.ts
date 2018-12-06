@@ -35,11 +35,24 @@ export class AdminComponent implements OnInit {
     this.authService.logout();
   }
 
-  apply() {
+  saveProfile() {
     this.editProfileService.save()
       .subscribe(done => {
         this.profiles = this.profileService.getAllProfiles();
         this.selectedProfile = done;
       }, error => this.error.handle(error));
+  }
+
+  removeProfile() {
+    this.editProfileService.remove(this.selectedProfile.id)
+      .subscribe(done => {
+        this.profiles = this.profileService.getAllProfiles();
+        this.profiles.subscribe(profiles => this.selectedProfile = profiles[0]);
+      }, error => this.error.handle(error))
+  }
+
+  newProfile() {
+    this.selectedProfile = null;
+    this.editProfileService.create();
   }
 }

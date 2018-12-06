@@ -22,7 +22,15 @@ export class ProfileService {
     return this.api.get(`/profiles`);
   }
 
-  updateProfile(profile: Profile): Observable<any> {
+  createProfile(profile: Profile): Observable<any> {
     return this.api.post('/profiles', profile);
+  }
+
+  updateProfile(profile: Profile): Observable<any> {
+    return this.api.put('/profiles/' + profile.id, profile);
+  }
+
+  removeProfile(id: number): Observable<any> {
+    return this.api.delete('/profiles/' + id);
   }
 }

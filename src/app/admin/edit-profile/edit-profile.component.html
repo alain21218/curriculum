@@ -1,5 +1,4 @@
 <form [formGroup]="editProfileService.group">
-  <!-- <mat-slide-toggle formControlName="active">Déployer</mat-slide-toggle> -->
   <mat-form-field>
     <input type="text" matInput placeholder="Titre du profil" formControlName="title">
   </mat-form-field>
@@ -38,4 +37,7 @@
   <mat-form-field>
     <input type="url" matInput placeholder="LinkedIn" formControlName="linkedin">
   </mat-form-field>
+  <mat-slide-toggle *ngIf="saved" color="primary" formControlName="active">Déployer</mat-slide-toggle>
 </form>
+
+<!-- <pre appCollapse>{{ saved }}</pre> -->

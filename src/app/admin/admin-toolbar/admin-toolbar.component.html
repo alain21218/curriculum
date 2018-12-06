@@ -1,17 +1,32 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Administration</span>
+    <span>Admin</span>
+    
     <span class="spacer"></span>
 
-    <!-- Dropdown that swap forms to another profile -->
-    <mat-select class="profiles" [(ngModel)]="selectedProfile" [compareWith]="compareWith">
+    <button mat-button color="accent" (click)="logout.emit()">
+      <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar class="actions" color="primary">
+  <!-- Dropdown that swap forms to another profile -->
+  <mat-form-field color="default">
+    <mat-select [(ngModel)]="selectedProfile" [compareWith]="compareWith">
       <mat-option *ngFor="let profile of profiles | async" [value]="profile">
         {{ profile.title }}
       </mat-option>
     </mat-select>
+  </mat-form-field>
 
-    <button mat-raised-button color="accent" (click)="logout.emit()">
-      <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
-    </button>
-  </mat-toolbar-row>
+  <button mat-button color="default" (click)="newProfile()">
+    <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+  </button>
+  <button mat-button *ngIf="selectedProfile" color="accent" (click)="removeProfile()">
+    <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+  </button>
+  <button mat-button color="default" (click)="saveProfile()">
+    <fa-icon [icon]="['fas', 'check']"></fa-icon>
+  </button>
 </mat-toolbar>
