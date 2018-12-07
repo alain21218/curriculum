@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Skill } from 'src/app/core/models/skill';
+import { EditProfileService } from '../edit-profile/edit-profile.service';
+import { SkillsService } from 'src/app/core/services/skills.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditSkillsService {
+
   group = new FormGroup({
     skills: new FormArray([])
   });
 
-  constructor() {
+  constructor(private skillsService: SkillsService) {
     this.addSkill();
   }
 
@@ -28,12 +32,21 @@ export class EditSkillsService {
     this.skills.removeAt(index);
   }
 
-  makeSkills(): Skill[] {
+  makeSkills(profileId: number): Skill[] {
     const skills = [];
 
     Object.assign(skills, this.skills.value);
+    skills.map(skill => skill.profileId = profileId);
 
     return skills;
+  }
+
+  getSkills(profileId: number) {
+    return this.skillsService.getSkills(profileId);
+  }
+
+  updateForm(skills: Skill[]) {
+    this.skills.patchValue(skills);
   }
 
   get skills(): FormArray {

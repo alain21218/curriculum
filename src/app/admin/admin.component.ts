@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth.service';
-import { UserService } from '../core/services/user.service';
-import { User } from '../core/models/user';
 import { EditProfileService } from './edit-profile/edit-profile.service';
 import { Profile } from '../core/models/profile';
 import { ProfileService } from '../core/services/profile.service';
@@ -10,7 +8,6 @@ import { ErrorService } from '../core/services/error.service';
 import { SkillsService } from '../core/services/skills.service';
 import { EditSkillsService } from './edit-skills/edit-skills.service';
 import { Skill } from '../core/models/skill';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -46,7 +43,7 @@ export class AdminComponent implements OnInit {
       .subscribe(profile => {
         const otherInfos = [];
 
-        otherInfos.push(this.createSkills());
+        otherInfos.push(this.createSkills(profile.id));
 
         forkJoin(otherInfos).subscribe(otherInfos => {
           this.profiles = this.profileService.getAllProfiles();
@@ -68,7 +65,20 @@ export class AdminComponent implements OnInit {
     this.editProfileService.create();
   }
 
-  createSkills(): Observable<Skill[]> {
-    return this.skillsService.createSkills(this.editSkillsService.makeSkills());
+  createSkills(profileId: number): Observable<Skill[]> {
+    return this.skillsService.createSkills(this.editSkillsService.makeSkills(profileId));
+  }
+
+  selectionChanged(selectedProfile: Profile) {
+    this.selectedProfile = selectedProfile;
+    this.editProfileService.updateForm(selectedProfile);
+
+    if(selectedProfile) {
+      this.skillsService.getSkills(selectedProfile.id).subscribe(
+        skills => this.editSkillsService.updateForm(skills)
+      )
+    }else {
+      this.editSkillsService.group.reset();
+    }
   }
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ProfileService } from 'src/app/core/services/profile.service';
 import { Observable } from 'rxjs';
 import { Profile } from 'src/app/core/models/profile';
 import { EditProfileService } from '../edit-profile/edit-profile.service';
 import { ErrorService } from 'src/app/core/services/error.service';
+import { EditSkillsService } from '../edit-skills/edit-skills.service';
 
 @Component({
   selector: 'app-admin-toolbar',
@@ -22,6 +22,7 @@ export class AdminToolbarComponent implements OnInit {
 
   constructor(
     private editProfileService: EditProfileService,
+    private editSkillsService: EditSkillsService,
     private error: ErrorService
   ) {}
    
@@ -33,7 +34,6 @@ export class AdminToolbarComponent implements OnInit {
 
   set selectedProfile(value: Profile) {
     this._selectedProfile = value;
-    this.editProfileService.updateForm(value);
     this.selectedProfileChange.emit(value);
   }
 

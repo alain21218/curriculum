@@ -1,4 +1,4 @@
-<app-admin-toolbar [profiles]="profiles" [(selectedProfile)]="selectedProfile" 
+<app-admin-toolbar [profiles]="profiles" [selectedProfile]="selectedProfile" (selectedProfileChange)="selectionChanged($event)"
 (logout)="logout()" (new)="newProfile()" (remove)="removeProfile()" (save)="saveProfile()"></app-admin-toolbar>
 
 <!-- [linear]="true" -->
@@ -9,7 +9,7 @@
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Compétences</ng-template>
-        <app-edit-skills></app-edit-skills>
+        <app-edit-skills [profileId]="selectedProfile?.id"></app-edit-skills>
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Formation</ng-template>

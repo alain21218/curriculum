@@ -23,4 +23,8 @@ export class SkillsService {
   createSkill(skill: Skill): Observable<any> {
     return this.api.post('/skills', skill);
   }
+
+  getSkills(profileId: number): Observable<any> {
+    return this.api.get('/skills?profileId=' + profileId);
+  }
 }
